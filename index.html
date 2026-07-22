@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarjeta de Presentación Digital - Graficolor</title>
-
+    
     <!-- Tailwind CSS para un diseño moderno y responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    
     <!-- Font Awesome para los íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    
     <!-- Google Fonts para una tipografía elegante -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+    
     <!-- Biblioteca para generar el código QR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -37,7 +37,7 @@
             70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
         }
-
+        
         /* Estilos para el scrollbar del popup de servicios */
         .servicios-scrollbar::-webkit-scrollbar {
             width: 8px;
@@ -49,7 +49,7 @@
             background-color: #ec4899; /* pink-500 */
             border-radius: 10px;
         }
-
+        
         /* Fondo abstracto para el encabezado inspirado en CMYK */
         .cmyk-bg {
             background: linear-gradient(135deg, rgba(0,255,255,0.8) 0%, rgba(255,0,255,0.8) 50%, rgba(255,255,0,0.8) 100%),
@@ -62,7 +62,7 @@
 
     <!-- Contenedor principal de la tarjeta -->
     <div class="w-full md:max-w-sm bg-gray-900 border border-gray-700 md:shadow-2xl text-center md:rounded-2xl min-h-screen md:min-h-0 overflow-hidden relative">
-
+        
         <!-- Encabezado abstracto (reemplaza imagen de pastel) -->
         <div class="h-48 cmyk-bg relative" style="clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);">
              <div class="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -74,17 +74,17 @@
                 <!-- Se inserta el logo de Graficolor usando la imagen proporcionada -->
                 <img src="https://i.postimg.cc/J7vXBCkw/upscalemedia-transformed.jpg" alt="Logo Graficolor" class="w-full h-full object-contain">
             </div>
-
+            
             <h1 class="font-logo text-3xl mt-3 tracking-wide text-white">
                 Graficolor
             </h1>
             <p class="text-sm text-gray-400 font-semibold tracking-widest uppercase mt-1">Litografía y Diseño</p>
         </div>
-
+        
         <!-- Contenedor del resto del contenido -->
         <div class="px-6 pb-8 mt-4">
             <p class="text-sm text-gray-300 mb-6 italic">"Diseñamos e imprimimos tus ideas."</p>
-
+            
             <!-- Botón principal de WhatsApp (Suele ser más efectivo que llamada directa) -->
             <a href="https://wa.me/573008374808?text=¡Hola!%20Vengo%20de%20su%20tarjeta%20digital.%20Quisiera%20cotizar%20un%20trabajo." target="_blank" class="flex items-center justify-center bg-pink-600 text-white font-bold py-3 px-8 rounded-full text-lg mb-6 transition-all duration-300 hover:bg-pink-500 hover:scale-105 transform pulse-effect shadow-lg shadow-pink-500/30 w-full mx-auto max-w-[280px]">
                 <i class="fab fa-whatsapp text-2xl mr-3"></i>
@@ -95,7 +95,7 @@
 
             <!-- Cuadrícula de Íconos de Contacto y Servicios -->
             <div class="grid grid-cols-4 gap-4 mb-6">
-
+                
                 <!-- Servicios -->
                 <div class="flex flex-col items-center">
                     <button id="servicios-btn" class="bg-gray-800 text-cyan-400 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-cyan-500 hover:text-white shadow-md" aria-label="Nuestros Servicios">
@@ -103,7 +103,7 @@
                     </button>
                     <p class="text-[10px] mt-2 text-gray-400 font-medium">Servicios</p>
                 </div>
-
+                
                 <!-- Teléfono (Llamada) -->
                 <div class="flex flex-col items-center">
                     <a href="tel:+573008374808" class="bg-gray-800 text-green-400 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-green-500 hover:text-white shadow-md" aria-label="Llamar">
@@ -153,7 +153,7 @@
                     </a>
                     <p class="text-[10px] mt-2 text-gray-400 font-medium">Guardar</p>
                 </div>
-
+                
                 <!-- Compartir / QR -->
                 <div class="flex flex-col items-center">
                     <button id="share-btn" class="bg-gray-800 text-gray-300 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-gray-600 hover:text-white shadow-md" aria-label="Compartir / QR">
@@ -166,7 +166,7 @@
             <a href="#" id="install-btn" class="inline-block mt-4 text-xs text-gray-500 hover:text-pink-400 transition-colors border-b border-dashed border-gray-600 pb-1">¿Cómo instalar en mi dispositivo?</a>
         </div>
     </div>
-
+    
     <!-- Popup para Compartir / QR -->
     <div id="share-popup" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 hidden p-4 transition-opacity">
         <div class="bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl p-8 max-w-xs w-full text-center relative text-white">
@@ -184,13 +184,13 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Popup para Instalar en Móvil -->
     <div id="install-popup" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 hidden p-4">
         <div class="bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl p-6 max-w-sm w-full relative text-white">
             <button id="close-install-popup-btn" class="absolute top-3 right-4 text-3xl text-gray-500 hover:text-pink-500">&times;</button>
             <h3 class="text-xl font-bold mb-6 text-center border-b border-gray-700 pb-4">Instalar como App</h3>
-
+            
             <div class="space-y-6">
                 <!-- Instrucciones para iOS -->
                 <div class="bg-gray-800 p-4 rounded-xl">
@@ -201,7 +201,7 @@
                         <li>Confirma tocando <strong>"Agregar"</strong>.</li>
                     </ol>
                 </div>
-
+        
                 <!-- Instrucciones para Android -->
                 <div class="bg-gray-800 p-4 rounded-xl">
                     <h4 class="font-bold text-lg mb-2 flex items-center text-gray-200"><i class="fab fa-android text-2xl mr-3 text-green-500"></i> Android</h4>
@@ -222,12 +222,12 @@
                 <h2 class="font-logo text-2xl tracking-wide">Nuestros <span class="text-cyan-400">Servicios</span></h2>
                 <button id="close-servicios-popup-btn" class="text-3xl text-gray-400 hover:text-white transition-colors">&times;</button>
             </div>
-
+            
             <div class="flex-1 overflow-y-auto servicios-scrollbar p-2 mt-4">
                 <p class="text-sm text-gray-400 mb-8">Ofrecemos soluciones integrales de impresión y diseño para impulsar tu marca o evento.</p>
-
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-12">
-
+                    
                     <!-- Servicio 1: Editorial -->
                     <div class="bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-cyan-500 transition-colors group">
                         <div class="text-cyan-400 text-3xl mb-3 group-hover:scale-110 transition-transform origin-left"><i class="fas fa-book-open"></i></div>
@@ -255,7 +255,7 @@
                         <h3 class="font-bold text-lg text-white mb-2">Impresión Comercial</h3>
                         <p class="text-xs text-gray-400">Tarjetas de presentación, afiches, stickers y etiquetas adhesivas resistentes.</p>
                     </div>
-
+                    
                     <!-- Servicio 5: Sellos -->
                     <div class="bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-purple-400 transition-colors group">
                         <div class="text-purple-400 text-3xl mb-3 group-hover:scale-110 transition-transform origin-left"><i class="fas fa-stamp"></i></div>
@@ -272,7 +272,7 @@
 
                 </div>
             </div>
-
+            
             <!-- Botón flotante para pedir cotización -->
             <div class="absolute bottom-6 left-0 right-0 px-4">
                 <a href="https://wa.me/573008374808?text=Hola,%20vi%20sus%20servicios%20en%20la%20tarjeta%20digital%20y%20quiero%20más%20información." target="_blank" class="block bg-gradient-to-r from-pink-600 to-purple-600 text-center font-bold py-4 rounded-xl shadow-lg shadow-pink-500/20 hover:shadow-pink-500/40 transition-shadow">
@@ -287,11 +287,11 @@
         function closePopup(popupElement) {
             popupElement.classList.add('hidden');
         }
-
+        
         function setupPopupClosing(popupId, closeBtnId) {
             const popup = document.getElementById(popupId);
             const closeBtn = document.getElementById(closeBtnId);
-
+            
             closeBtn.addEventListener('click', () => closePopup(popup));
             popup.addEventListener('click', (event) => {
                 if (event.target === popup) closePopup(popup);
@@ -311,7 +311,7 @@
         shareBtn.addEventListener('click', () => {
             const url = window.location.href;
             shareUrlInput.value = url;
-
+            
             qrcodeContainer.innerHTML = '';
             // Colores oscuros acordes a la nueva paleta para el QR
             qrcode = new QRCode(qrcodeContainer, {
@@ -368,7 +368,7 @@
             serviciosPopup.classList.remove('hidden');
         });
 
-        // --- Lógica para Guardar Contacto (vCard actualizada) ---
+        // --- Lógica para Guardar Contacto (vCard actualizada para Móviles) ---
         const saveContactBtn = document.getElementById('save-contact-btn');
         // Datos extraídos de la vCard proporcionada
         const vCardData = `BEGIN:VCARD
@@ -383,7 +383,30 @@ EMAIL;TYPE=INTERNET:gerencia@graficolor.com
 ADR;TYPE=WORK:;;Cl. 31 #4-43, Comuna 1;Santa Marta;Magdalena;;Colombia
 URL:${window.location.href}
 END:VCARD`;
-        saveContactBtn.href = `data:text/vcard;charset=utf-8,${encodeURIComponent(vCardData)}`;
+        
+        // Reemplazamos la asignación directa del href por un evento click con Blob
+        saveContactBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Evitamos que el botón intente navegar
+            
+            // Creamos un "Blob" (archivo virtual) para asegurar compatibilidad móvil
+            const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            
+            // Creamos un enlace invisible, forzamos el click y lo eliminamos
+            const link = document.createElement('a');
+            link.style.display = 'none';
+            link.href = url;
+            link.setAttribute('download', 'Graficolor.vcf');
+            
+            document.body.appendChild(link);
+            link.click();
+            
+            // Limpieza de memoria
+            setTimeout(() => {
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+            }, 100);
+        });
 
         // --- Lógica para el Popup de Instalación ---
         const installBtn = document.getElementById('install-btn');
