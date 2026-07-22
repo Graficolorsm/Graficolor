@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta de Presentación Digital - Graficolor</title>
+
+    <!-- Tailwind CSS para un diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts para una tipografía elegante -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Biblioteca para generar el código QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        /* Aplicamos las fuentes personalizadas */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .font-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+        /* Efecto de "pulsación" para llamar la atención en el botón principal */
+        .pulse-effect {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
+        }
+
+        /* Estilos para el scrollbar del popup de servicios */
+        .servicios-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .servicios-scrollbar::-webkit-scrollbar-track {
+            background: #1f2937; /* gray-800 */
+        }
+        .servicios-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #ec4899; /* pink-500 */
+            border-radius: 10px;
+        }
+
+        /* Fondo abstracto para el encabezado inspirado en CMYK */
+        .cmyk-bg {
+            background: linear-gradient(135deg, rgba(0,255,255,0.8) 0%, rgba(255,0,255,0.8) 50%, rgba(255,255,0,0.8) 100%),
+                        url('https://www.transparenttextures.com/patterns/cubes.png');
+            background-blend-mode: overlay;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 md:bg-gray-800 md:flex md:items-center md:justify-center min-h-screen text-gray-100">
+
+    <!-- Contenedor principal de la tarjeta -->
+    <div class="w-full md:max-w-sm bg-gray-900 border border-gray-700 md:shadow-2xl text-center md:rounded-2xl min-h-screen md:min-h-0 overflow-hidden relative">
+
+        <!-- Encabezado abstracto (reemplaza imagen de pastel) -->
+        <div class="h-48 cmyk-bg relative" style="clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);">
+             <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        </div>
+
+        <!-- Logo y Nombre de la Empresa -->
+        <div class="relative -mt-16 z-10 flex flex-col items-center">
+            <div class="w-28 h-28 bg-white rounded-full border-4 border-gray-900 flex items-center justify-center shadow-xl overflow-hidden p-2">
+                <!-- Se inserta el logo de Graficolor usando la imagen proporcionada -->
+                <img src="https://i.postimg.cc/J7vXBCkw/upscalemedia-transformed.jpg" alt="Logo Graficolor" class="w-full h-full object-contain">
+            </div>
+
+            <h1 class="font-logo text-3xl mt-3 tracking-wide text-white">
+                Graficolor
+            </h1>
+            <p class="text-sm text-gray-400 font-semibold tracking-widest uppercase mt-1">Litografía y Diseño</p>
+        </div>
+
+        <!-- Contenedor del resto del contenido -->
+        <div class="px-6 pb-8 mt-4">
+            <p class="text-sm text-gray-300 mb-6 italic">"Diseñamos e imprimimos tus ideas."</p>
+
+            <!-- Botón principal de WhatsApp (Suele ser más efectivo que llamada directa) -->
+            <a href="https://wa.me/573008374808?text=¡Hola!%20Vengo%20de%20su%20tarjeta%20digital.%20Quisiera%20cotizar%20un%20trabajo." target="_blank" class="flex items-center justify-center bg-pink-600 text-white font-bold py-3 px-8 rounded-full text-lg mb-6 transition-all duration-300 hover:bg-pink-500 hover:scale-105 transform pulse-effect shadow-lg shadow-pink-500/30 w-full mx-auto max-w-[280px]">
+                <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                Escríbenos
+            </a>
+
+            <p class="text-xs text-gray-400 mb-4 font-semibold tracking-wider uppercase">Conecta con nosotros</p>
+
+            <!-- Cuadrícula de Íconos de Contacto y Servicios -->
+            <div class="grid grid-cols-4 gap-4 mb-6">
+
+                <!-- Servicios -->
+                <div class="flex flex-col items-center">
+                    <button id="servicios-btn" class="bg-gray-800 text-cyan-400 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-cyan-500 hover:text-white shadow-md" aria-label="Nuestros Servicios">
+                        <i class="fas fa-layer-group"></i>
+                    </button>
+                    <p class="text-[10px] mt-2 text-gray-400 font-medium">Servicios</p>
+                </div>
+
+                <!-- Teléfono (Llamada) -->
+                <div class="flex flex-col items-center">
+                    <a href="tel:+573008374808" class="bg-gray-800 text-green-400 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-green-500 hover:text-white shadow-md" aria-label="Llamar">
+                        <i class="fas fa-phone-alt"></i>
+                    </a>
+                    <p class="text-[10px] mt-2 text-gray-400 font-medium">Llamar</p>
+                </div>
+
+                <!-- Instagram -->
+                <div class="flex flex-col items-center">
+                    <a href="https://www.instagram.com/graficolorsm" target="_blank" class="bg-gray-800 text-pink-500 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-pink-500 hover:to-purple-500 hover:text-white hover:border-transparent shadow-md" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <p class="text-[10px] mt-2 text-gray-400 font-medium">Instagram</p>
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div class="flex flex-col items-center">
+                    <a href="mailto:info@graficolorsm.com" class="bg-gray-800 text-yellow-400 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-yellow-500 hover:text-gray-900 shadow-md" aria-label="Correo Electrónico">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <p class="text-[10px] mt-2 text-gray-400 font-medium">Correo</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <!-- Ubicación -->
+                <div class="flex flex-col items-center">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Cl.+31+%234-43,+Comuna+1,+Santa+Marta,+Magdalena,+Colombia" target="_blank" class="bg-gray-800 text-red-500 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-red-500 hover:text-white shadow-md" aria-label="Ubicación">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </a>
+                    <p class="text-[10px] mt-2 text-gray-400 font-medium">Ubicación</p>
+                </div>
+
+                <!-- Reseñas Google -->
+                <div class="flex flex-col items-center">
+                    <a href="https://g.page/r/Cfvm4eezzOmtEAI/review" target="_blank" class="bg-gray-800 text-blue-400 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-blue-500 hover:text-white shadow-md" aria-label="Dejar Reseña">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <p class="text-[10px] mt-2 text-gray-400 font-medium text-center leading-tight">Calificanos</p>
+                </div>
+
+                <!-- Guardar Contacto -->
+                <div class="flex flex-col items-center">
+                    <a id="save-contact-btn" href="#" download="Graficolor.vcf" class="bg-gray-800 text-purple-400 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-purple-500 hover:text-white shadow-md" aria-label="Guardar Contacto">
+                        <i class="fas fa-address-card"></i>
+                    </a>
+                    <p class="text-[10px] mt-2 text-gray-400 font-medium">Guardar</p>
+                </div>
+
+                <!-- Compartir / QR -->
+                <div class="flex flex-col items-center">
+                    <button id="share-btn" class="bg-gray-800 text-gray-300 w-14 h-14 rounded-xl flex items-center justify-center text-2xl border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:bg-gray-600 hover:text-white shadow-md" aria-label="Compartir / QR">
+                        <i class="fas fa-qrcode"></i>
+                    </button>
+                    <p class="text-[10px] mt-2 text-gray-400 font-medium">Compartir</p>
+                </div>
+            </div>
+
+            <a href="#" id="install-btn" class="inline-block mt-4 text-xs text-gray-500 hover:text-pink-400 transition-colors border-b border-dashed border-gray-600 pb-1">¿Cómo instalar en mi dispositivo?</a>
+        </div>
+    </div>
+
+    <!-- Popup para Compartir / QR -->
+    <div id="share-popup" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 hidden p-4 transition-opacity">
+        <div class="bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl p-8 max-w-xs w-full text-center relative text-white">
+            <button id="close-share-popup-btn" class="absolute top-3 right-4 text-3xl text-gray-500 hover:text-pink-500 transition-colors">&times;</button>
+            <h3 class="text-xl font-bold mb-6 font-logo">Comparte Graficolor</h3>
+            <div id="qrcode-container" class="flex justify-center mb-6 bg-white p-4 rounded-xl inline-block mx-auto">
+                <!-- El código QR se generará aquí -->
+            </div>
+            <p class="text-sm text-gray-400 mb-3">Escanea el código o copia el enlace:</p>
+            <div class="relative">
+                <input type="text" id="share-url" class="w-full bg-gray-800 text-gray-300 text-center rounded-lg p-3 border border-gray-700 text-xs pr-10 focus:outline-none focus:border-pink-500" readonly>
+                <button id="copy-url-btn" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-pink-500">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup para Instalar en Móvil -->
+    <div id="install-popup" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl p-6 max-w-sm w-full relative text-white">
+            <button id="close-install-popup-btn" class="absolute top-3 right-4 text-3xl text-gray-500 hover:text-pink-500">&times;</button>
+            <h3 class="text-xl font-bold mb-6 text-center border-b border-gray-700 pb-4">Instalar como App</h3>
+
+            <div class="space-y-6">
+                <!-- Instrucciones para iOS -->
+                <div class="bg-gray-800 p-4 rounded-xl">
+                    <h4 class="font-bold text-lg mb-2 flex items-center text-gray-200"><i class="fab fa-apple text-2xl mr-3"></i> iOS (iPhone)</h4>
+                    <ol class="list-decimal list-inside text-sm text-gray-400 space-y-2 pl-2">
+                        <li>Toca el botón de <strong>Compartir</strong> <i class="fas fa-share-from-square mx-1"></i> en Safari.</li>
+                        <li>Desliza hacia arriba y selecciona <strong>"Agregar a inicio"</strong>.</li>
+                        <li>Confirma tocando <strong>"Agregar"</strong>.</li>
+                    </ol>
+                </div>
+
+                <!-- Instrucciones para Android -->
+                <div class="bg-gray-800 p-4 rounded-xl">
+                    <h4 class="font-bold text-lg mb-2 flex items-center text-gray-200"><i class="fab fa-android text-2xl mr-3 text-green-500"></i> Android</h4>
+                    <ol class="list-decimal list-inside text-sm text-gray-400 space-y-2 pl-2">
+                        <li>Toca los <strong>tres puntos</strong> <i class="fas fa-ellipsis-v mx-1"></i> en Chrome.</li>
+                        <li>Selecciona <strong>"Agregar a la pantalla principal"</strong>.</li>
+                        <li>Confirma la acción.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup para Nuestros Servicios (basado en Instagram) -->
+    <div id="servicios-popup" class="fixed inset-0 bg-gray-900 z-50 hidden p-4 text-white">
+        <div class="w-full h-full max-w-lg mx-auto relative flex flex-col">
+            <div class="flex justify-between items-center py-4 px-2 border-b border-gray-800">
+                <h2 class="font-logo text-2xl tracking-wide">Nuestros <span class="text-cyan-400">Servicios</span></h2>
+                <button id="close-servicios-popup-btn" class="text-3xl text-gray-400 hover:text-white transition-colors">&times;</button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto servicios-scrollbar p-2 mt-4">
+                <p class="text-sm text-gray-400 mb-8">Ofrecemos soluciones integrales de impresión y diseño para impulsar tu marca o evento.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-12">
+
+                    <!-- Servicio 1: Editorial -->
+                    <div class="bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-cyan-500 transition-colors group">
+                        <div class="text-cyan-400 text-3xl mb-3 group-hover:scale-110 transition-transform origin-left"><i class="fas fa-book-open"></i></div>
+                        <h3 class="font-bold text-lg text-white mb-2">Editorial</h3>
+                        <p class="text-xs text-gray-400">Revistas, periódicos, plegables y agendas personalizadas con acabados de alta calidad.</p>
+                    </div>
+
+                    <!-- Servicio 2: PubliExterior -->
+                    <div class="bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-pink-500 transition-colors group">
+                        <div class="text-pink-500 text-3xl mb-3 group-hover:scale-110 transition-transform origin-left"><i class="fas fa-bullhorn"></i></div>
+                        <h3 class="font-bold text-lg text-white mb-2">PubliExterior</h3>
+                        <p class="text-xs text-gray-400">Vallas publicitarias, pendones y señalética duradera para que tu marca se vea en todas partes.</p>
+                    </div>
+
+                    <!-- Servicio 3: Promocional -->
+                    <div class="bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-yellow-400 transition-colors group">
+                        <div class="text-yellow-400 text-3xl mb-3 group-hover:scale-110 transition-transform origin-left"><i class="fas fa-gift"></i></div>
+                        <h3 class="font-bold text-lg text-white mb-2">Promocional</h3>
+                        <p class="text-xs text-gray-400">Manillas, mugs, carnets, calendarios, abanicos y paletas personalizadas para tus eventos.</p>
+                    </div>
+
+                    <!-- Servicio 4: Impresión General -->
+                    <div class="bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-green-400 transition-colors group">
+                        <div class="text-green-400 text-3xl mb-3 group-hover:scale-110 transition-transform origin-left"><i class="fas fa-print"></i></div>
+                        <h3 class="font-bold text-lg text-white mb-2">Impresión Comercial</h3>
+                        <p class="text-xs text-gray-400">Tarjetas de presentación, afiches, stickers y etiquetas adhesivas resistentes.</p>
+                    </div>
+
+                    <!-- Servicio 5: Sellos -->
+                    <div class="bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-purple-400 transition-colors group">
+                        <div class="text-purple-400 text-3xl mb-3 group-hover:scale-110 transition-transform origin-left"><i class="fas fa-stamp"></i></div>
+                        <h3 class="font-bold text-lg text-white mb-2">Sellos</h3>
+                        <p class="text-xs text-gray-400">Elaboración de sellos personalizados para tu empresa o negocio.</p>
+                    </div>
+
+                    <!-- Servicio 6: Restaurantes -->
+                    <div class="bg-gray-800 rounded-xl p-5 border border-gray-700 hover:border-orange-500 transition-colors group">
+                        <div class="text-orange-500 text-3xl mb-3 group-hover:scale-110 transition-transform origin-left"><i class="fas fa-utensils"></i></div>
+                        <h3 class="font-bold text-lg text-white mb-2">Cartas / Menú</h3>
+                        <p class="text-xs text-gray-400">Diseño e impresión de menús atractivos y duraderos para restaurantes.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Botón flotante para pedir cotización -->
+            <div class="absolute bottom-6 left-0 right-0 px-4">
+                <a href="https://wa.me/573008374808?text=Hola,%20vi%20sus%20servicios%20en%20la%20tarjeta%20digital%20y%20quiero%20más%20información." target="_blank" class="block bg-gradient-to-r from-pink-600 to-purple-600 text-center font-bold py-4 rounded-xl shadow-lg shadow-pink-500/20 hover:shadow-pink-500/40 transition-shadow">
+                    Solicitar Cotización <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Helpers Generales ---
+        function closePopup(popupElement) {
+            popupElement.classList.add('hidden');
+        }
+
+        function setupPopupClosing(popupId, closeBtnId) {
+            const popup = document.getElementById(popupId);
+            const closeBtn = document.getElementById(closeBtnId);
+
+            closeBtn.addEventListener('click', () => closePopup(popup));
+            popup.addEventListener('click', (event) => {
+                if (event.target === popup) closePopup(popup);
+            });
+        }
+
+        // --- Lógica para el Popup de Compartir / QR ---
+        const shareBtn = document.getElementById('share-btn');
+        const sharePopup = document.getElementById('share-popup');
+        const qrcodeContainer = document.getElementById('qrcode-container');
+        const shareUrlInput = document.getElementById('share-url');
+        const copyUrlBtn = document.getElementById('copy-url-btn');
+        let qrcode = null;
+
+        setupPopupClosing('share-popup', 'close-share-popup-btn');
+
+        shareBtn.addEventListener('click', () => {
+            const url = window.location.href;
+            shareUrlInput.value = url;
+
+            qrcodeContainer.innerHTML = '';
+            // Colores oscuros acordes a la nueva paleta para el QR
+            qrcode = new QRCode(qrcodeContainer, {
+                text: url,
+                width: 180,
+                height: 180,
+                colorDark : "#111827", // gray-900
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+            sharePopup.classList.remove('hidden');
+        });
+
+        // Función para copiar URL
+        const copyToClipboard = () => {
+            shareUrlInput.select();
+            try {
+                if (navigator.clipboard) {
+                     navigator.clipboard.writeText(shareUrlInput.value).then(() => {
+                        showCopyFeedback();
+                    }).catch(err => {
+                         fallbackCopy();
+                    });
+                } else {
+                    fallbackCopy();
+                }
+            } catch (err) {
+                console.error('Error copiando:', err);
+            }
+        };
+
+        const fallbackCopy = () => {
+            document.execCommand('copy');
+            showCopyFeedback();
+        };
+
+        const showCopyFeedback = () => {
+            const originalHtml = copyUrlBtn.innerHTML;
+            copyUrlBtn.innerHTML = '<i class="fas fa-check text-green-500"></i>';
+            setTimeout(() => {
+                copyUrlBtn.innerHTML = originalHtml;
+            }, 2000);
+        };
+
+        shareUrlInput.addEventListener('click', copyToClipboard);
+        copyUrlBtn.addEventListener('click', copyToClipboard);
+
+        // --- Lógica para el Popup de Servicios ---
+        const serviciosBtn = document.getElementById('servicios-btn');
+        const serviciosPopup = document.getElementById('servicios-popup');
+        setupPopupClosing('servicios-popup', 'close-servicios-popup-btn');
+
+        serviciosBtn.addEventListener('click', () => {
+            serviciosPopup.classList.remove('hidden');
+        });
+
+        // --- Lógica para Guardar Contacto (vCard actualizada) ---
+        const saveContactBtn = document.getElementById('save-contact-btn');
+        // Datos extraídos de la vCard proporcionada
+        const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:GRAFICOLOR
+N:GRAFICOLOR;;;;
+ORG:LITOGRAFIA
+TEL;TYPE=CELL,VOICE:+573008374808
+EMAIL;TYPE=PREF,INTERNET:info@graficolorsm.com
+EMAIL;TYPE=INTERNET:diseno@graficolorsm.com
+EMAIL;TYPE=INTERNET:gerencia@graficolor.com
+ADR;TYPE=WORK:;;Cl. 31 #4-43, Comuna 1;Santa Marta;Magdalena;;Colombia
+URL:${window.location.href}
+END:VCARD`;
+        saveContactBtn.href = `data:text/vcard;charset=utf-8,${encodeURIComponent(vCardData)}`;
+
+        // --- Lógica para el Popup de Instalación ---
+        const installBtn = document.getElementById('install-btn');
+        setupPopupClosing('install-popup', 'close-install-popup-btn');
+
+        installBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('install-popup').classList.remove('hidden');
+        });
+
+    </script>
+</body>
+</html>
